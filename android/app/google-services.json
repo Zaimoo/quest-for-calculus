@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "340309557479",
+    "project_id": "quest-for-calculus",
+    "storage_bucket": "quest-for-calculus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:340309557479:android:a0743eef64b6b4de4f6242",
+        "android_client_info": {
+          "package_name": "com.example.quest_for_calculus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAcA2EGg5bKHdWc48u2VY7s2oQcIqhOYxQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
