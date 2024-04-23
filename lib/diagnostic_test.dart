@@ -102,6 +102,10 @@ class _MyWidgetState extends State<DiagnosticTest> {
   }
 
   void handleAnswer(int choiceIndex) {
+    if (lives <= 0) {
+      return;
+    }
+
     bool isCorrect =
         questions[currentQuestionIndex].correctAnswerIndex == choiceIndex;
 
@@ -115,11 +119,11 @@ class _MyWidgetState extends State<DiagnosticTest> {
       setState(() {
         lives--;
       });
-      showWrongAnswerDialog();
-    }
-
-    if (lives == 0) {
-      showEndGameDialog();
+      if (lives > 0) {
+        showWrongAnswerDialog();
+      } else {
+        showEndGameDialog();
+      }
     }
   }
 

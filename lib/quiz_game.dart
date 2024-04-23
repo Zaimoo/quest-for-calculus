@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_math_fork/flutter_math.dart';
 import 'package:quest_for_calculus/leaderboard.dart';
 import 'package:quest_for_calculus/model/question_model.dart';
+import 'package:quest_for_calculus/my_home_page.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class QuizGame extends StatefulWidget {
@@ -32,7 +33,6 @@ class _QuizGameState extends State<QuizGame> {
   void setDifficulty(difficulty) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('difficulty', difficulty);
-    print(prefs.getString('difficulty'));
   }
 
   void loadLevels() async {
@@ -82,6 +82,10 @@ class _QuizGameState extends State<QuizGame> {
   }
 
   void handleAnswer(int choiceIndex) {
+    if (lives <= 0) {
+      return;
+    }
+
     bool isCorrect = levels[currentLevelIndex]
             .questions[currentQuestionIndex]
             .correctAnswerIndex ==
@@ -98,11 +102,18 @@ class _QuizGameState extends State<QuizGame> {
       setState(() {
         lives--;
       });
-      showWrongAnswerDialog();
-    }
-
-    if (lives == 0) {
-      showEndGameDialog();
+      if (lives > 0) {
+        showWrongAnswerDialog();
+      } else {
+        Navigator.pushAndRemoveUntil(
+          context,
+          MaterialPageRoute(
+            builder: (BuildContext context) => MyHomePage(),
+          ),
+          ModalRoute.withName('/homepage'),
+        );
+        showEndGameDialog();
+      }
     }
   }
 

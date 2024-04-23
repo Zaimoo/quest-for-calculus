@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quest_for_calculus/diagnostic_test.dart';
 import 'package:quest_for_calculus/leaderboard.dart';
+import 'package:quest_for_calculus/tutorials.dart';
 
 class NavBar extends StatelessWidget {
   const NavBar({super.key});
@@ -30,7 +31,12 @@ class NavBar extends StatelessWidget {
               style:
                   TextStyle(fontFamily: 'Rosario', fontWeight: FontWeight.w700),
             ),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => Tutorials()),
+              );
+            },
           ),
           ListTile(
             leading: const Icon(Icons.account_circle),
