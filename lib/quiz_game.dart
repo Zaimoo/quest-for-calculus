@@ -39,8 +39,9 @@ class _QuizGameState extends State<QuizGame> {
     try {
       QuerySnapshot snapshot = await firestore.collection('questions').get();
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      if (prefs.getString('difficulty') == 'intermediate' &&
-          widget.difficulty == 'INTERMEDIATE') {
+      if (prefs.getString('difficulty') == 'intermediate' ||
+          prefs.getString('difficulty') == 'expert' &&
+              widget.difficulty == 'INTERMEDIATE') {
         currentLevelIndex = 1;
       } else if (prefs.getString('difficulty') == 'expert' &&
           widget.difficulty == 'EXPERT') {
